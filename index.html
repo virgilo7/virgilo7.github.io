@@ -7,112 +7,145 @@
     <style>
         body {
             font-family: monospace;
-            line-height: 1.6;
             color: #fff;
             background: #000;
-            max-width: 650px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.8;
         }
         
-        h1 {
-            font-size: 1.5em;
-            font-weight: normal;
-            margin-bottom: 5px;
+        .container {
+            text-align: center;
+            max-width: 600px;
         }
         
-        h2 {
-            font-size: 1.1em;
-            font-weight: bold;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-        
-        p {
-            margin: 5px 0;
-        }
-        
-        a {
+        .clickable {
             color: #fff;
             text-decoration: none;
             padding: 2px 6px;
             transition: all 0.2s;
+            cursor: pointer;
+            border-bottom: 1px dashed #fff;
         }
         
-        a:hover {
+        .clickable:hover {
             background: #fff;
             color: #000;
             border-radius: 3px;
+            border-bottom: 1px dashed #000;
         }
         
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 10px 0;
+        .hidden {
+            display: none;
         }
         
-        li {
-            margin: 8px 0;
-            padding-left: 0;
+        .expand {
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
         }
         
-        .note {
-            margin: 20px 0;
-            padding: 10px;
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .interest-detail {
+            margin-top: 15px;
+            padding: 15px;
             border: 1px solid #fff;
+            text-align: left;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
         }
         
-        hr {
-            border: none;
-            border-top: 1px solid #fff;
-            margin: 30px 0;
+        .back {
+            margin-top: 20px;
+            color: #666;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        
+        .back:hover {
+            color: #fff;
         }
     </style>
 </head>
 <body>
-    <h1>zinogre party</h1>
-    <h2>useful tools</h2>
-    <hr>
-    
-   <h2 id="video">video and file tools</h2>
-    <ul>
-        <li><a href="https://cobalt.tools">cobalt.tools</a> - download from youtube, twitter, tiktok, etc. clean, no ads</li>
-        <li><a href="https://bentopdf.com">bentopdf.com</a> - convert, merge, split pdfs</li>
-        <li><a href="https://vert.sh">vert.sh</a> - fast file conversion</li>
-    </ul>
-    
-    <h2 id="security">internet speed & security</h2>
-    <ul>
-        <li><a href="https://speed.cloudflare.com">cloudflare speed test</a> - test internet speed</li>
-        <li><a href="https://fast.com">fast.com</a> - netflix speed test (super simple)</li>
-        <li><a href="https://haveibeenpwned.com">have i been pwned</a> - check if your email was breached</li>
-    </ul>
-    
-    <h2 id="extensions">browser extensions</h2>
-    <ul>
-        <li><a href="https://github.com/gorhill/uBlock">ublock origin</a> - best ad blocker (install this!)</li>
-    </ul>
-    
-    <h2 id="entertainment">entertainment</h2>
-    <ul>
-        <li><a href="https://www.1shows.ru">1shows.ru</a> - stream and download shows</li>
-        <li><a href="https://meow.camera">meow.camera</a> - cat livestream</li>
-    </ul>
-    
-    <h2>nerd zone</h2>
-    <ul>
-        <li><a href="https://dangerzone.rocks">dangerzone.rocks</a> - safely convert pdfs to images</li>
-        <li><a href="https://privacytests.org">privacytests.org</a> - browser privacy comparison</li>
-        <li><a href="https://coveryourtracks.eff.org">cover your tracks</a> - test browser fingerprinting</li>
-        <li><a href="https://browserleaks.com">browserleaks.com</a> - check what your browser reveals</li>
-        <li><a href="https://archive.org">archive.org</a> - wayback machine (archived websites)</li>
-    </ul>
-    <hr>
-    
-    <div class="note">
-        <p><strong>last updated:</strong> november 2025</p>
+    <div class="container">
+        <div id="intro">
+            <p>hi my name is <span class="clickable" onclick="showInterests()">virgil</span></p>
+        </div>
+        
+        <div id="interests" class="hidden">
+            <p class="expand">
+                i'm interested in 
+                <span class="clickable" onclick="showDetail('dnd')">d&d</span>, 
+                <span class="clickable" onclick="showDetail('mmos')">mmos</span>, 
+                and <span class="clickable" onclick="showDetail('music')">music</span>
+            </p>
+            <p class="expand" style="margin-top: 10px;">
+                these are my <span class="clickable" onclick="window.location.href='tools.html'">recommended tools</span>
+            </p>
+        </div>
+        
+        <div id="dnd-detail" class="hidden">
+            <div class="interest-detail">
+                <strong>dungeons & dragons</strong><br><br>
+                though i've yet to finish a single campaign personally, i love watching shows like dimension20, naddpod, and critical role.
+            </div>
+            <p class="back" onclick="goBack()">← back</p>
+        </div>
+        
+        <div id="mmos-detail" class="hidden">
+            <div class="interest-detail">
+                <strong>mmos</strong><br><br>
+                i've played gw2, bdo, ffxiv, and wow. i usually main tanks! currently playing wow.
+            </div>
+            <p class="back" onclick="goBack()">← back</p>
+        </div>
+        
+        <div id="music-detail" class="hidden">
+            <div class="interest-detail">
+                <strong>music</strong><br><br>
+                i love rock music and early 00s stuff. going to an mcr concert in 2026.
+                always looking for new recommendations.
+            </div>
+            <p class="back" onclick="goBack()">← back</p>
+        </div>
     </div>
-
-    <p style="margin-top: 30px; font-size: 0.9em;">made with <svg viewBox="0 0 24 24" width="16" height="16" style="vertical-align: middle; display: inline-block;"><path fill="currentColor" d="M6.979 3.074a6 6 0 0 1 4.988 1.425l.037.033l.034-.03a6 6 0 0 1 4.733-1.44l.246.036a6 6 0 0 1 3.364 10.008l-.18.185l-.048.041l-7.45 7.379a1 1 0 0 1-1.313.082l-.094-.082l-7.493-7.422A6 6 0 0 1 6.979 3.074"></path></svg> by virgil</p>
+    
+    <script>
+        let currentView = 'intro';
+        
+        function showInterests() {
+            document.getElementById('interests').classList.remove('hidden');
+            currentView = 'interests';
+        }
+        
+        function showDetail(interest) {
+            document.getElementById('intro').classList.add('hidden');
+            document.getElementById('interests').classList.add('hidden');
+            document.getElementById(interest + '-detail').classList.remove('hidden');
+            currentView = interest;
+        }
+        
+        function goBack() {
+            // Hide all details
+            document.getElementById('dnd-detail').classList.add('hidden');
+            document.getElementById('mmos-detail').classList.add('hidden');
+            document.getElementById('music-detail').classList.add('hidden');
+            
+            // Show intro and interests again
+            document.getElementById('intro').classList.remove('hidden');
+            document.getElementById('interests').classList.remove('hidden');
+            currentView = 'interests';
+        }
+    </script>
 </body>
 </html>
